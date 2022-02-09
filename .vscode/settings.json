@@ -1,0 +1,12 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.extraPaths": [
+        ""
+    ],
+    "python.analysis.diagnosticMode": "workspace",
+    "python.linting.pylintEnabled": false,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    },
+}

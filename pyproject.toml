@@ -1,0 +1,14 @@
+[tool.pyright]
+
+include = [
+    "*/*.py",
+]
+
+
+reportOptionalSubscript = false
+reportOptionalMemberAccess = false
+reportOptionalCall = false
+reportOptionalIterable = false
+reportOptionalContextManager = false
+reportOptionalOperand = false
+reportMissingModuleSource = false
