@@ -1,5 +1,7 @@
 import renpy
-from installer import _, download, remove, exists, move, processing, run, mkdir, unpack, error
+from installer import _, download, remove, exists, move, processing, run, mkdir, unpack, error, info
+
+info(_("Visual Studio Code is licensed under {a=https://code.visualstudio.com/license}Microsoft Software License Terms{/a}, and may collect some information about you and your use.\n\nBy installing Visual Studio Code, you agree to thse terms."))
 
 if renpy.linux:
 
