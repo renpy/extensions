@@ -5,28 +5,37 @@ info(_("Visual Studio Code is licensed under {a=https://code.visualstudio.com/li
 
 if renpy.linux:
 
+    renpy_arch = getattr(renpy, "arch", "x86_64")
+
+    if renpy.arch == "armv7l":
+        arch = "arm"
+    elif renpy.arch == "aarch64":
+        arch = "arm64"
+    else:
+        arch = "x64"
+
     # Download vscode.
-    download("https://code.visualstudio.com/sha/download?build=stable&os=linux-x64", "temp:vscode-linux-x64.tar.gz")
+    download("https://code.visualstudio.com/sha/download?build=stable&os=linux-{}".format(arch), "temp:vscode-linux-{}.tar.gz".format(arch))
 
     # Back up the data directory.
     remove("temp:vscode-data")
-    if exists("vscode/VSCode-linux-x64/data"):
-        move("vscode/VSCode-linux-x64/data", "temp:vscode-data")
+    if exists("vscode/VSCode-linux-{}/data".format(arch)):
+        move("vscode/VSCode-linux-{}/data".format(arch), "temp:vscode-data")
 
     # Unpack vscode.
     mkdir("vscode")
-    remove("vscode/VSCode-linux-x64")
-    unpack("temp:vscode-linux-x64.tar.gz", "vscode")
+    remove("vscode/VSCode-linux-{}".format(arch))
+    unpack("temp:vscode-linux-{}.tar.gz".format(arch), "vscode")
 
     # Restore the data directory.
     if exists("temp:vscode-data"):
-        move("temp:vscode-data", "vscode/VSCode-linux-x64/data")
+        move("temp:vscode-data", "vscode/VSCode-linux-{}/data".format(arch))
     else:
-        mkdir("vscode/VSCode-linux-x64/data")
+        mkdir("vscode/VSCode-linux-{}/data".format(arch))
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/VSCode-linux-x64/code", "vscode/VSCode-linux-x64/resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
+    run("vscode/VSCode-linux-{}/code".format(arch), "vscode/VSCode-linux-{}/resources/app/out/cli.js".format(arch), "--ms-enable-electron-run-as-node",
         "--install-extension", "LuqueDaniel.languague-renpy",
         environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
 
