@@ -7,9 +7,9 @@ if renpy.linux:
 
     renpy_arch = getattr(renpy, "arch", "x86_64")
 
-    if renpy.arch == "armv7l":
+    if renpy_arch == "armv7l":
         arch = "arm"
-    elif renpy.arch == "aarch64":
+    elif renpy_arch == "aarch64":
         arch = "arm64"
     else:
         arch = "x64"
