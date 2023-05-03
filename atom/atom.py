@@ -4,9 +4,9 @@ from installer import _, download, remove, exists, move, processing, run, mkdir,
 package = ""
 
 if renpy.windows:
-    package = "linux"
+    package = "windows.zip"
 elif renpy.macintosh:
-    package = "mac.tar.bz2"
+    package = "mac.zip"
 elif renpy.linux:
     package = "linux.tar.bz2"
 else:
