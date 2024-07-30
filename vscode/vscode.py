@@ -36,7 +36,7 @@ if renpy.linux:
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
     run("vscode/VSCode-linux-{}/code".format(arch), "vscode/VSCode-linux-{}/resources/app/out/cli.js".format(arch), "--ms-enable-electron-run-as-node",
-        "--install-extension", "LuqueDaniel.languague-renpy",
+        "--install-extension", "renpy.language-renpy",
         environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
 
 elif renpy.windows:
@@ -64,7 +64,7 @@ elif renpy.windows:
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
     run("vscode/VSCode-win32-x64/Code.exe", "vscode/VSCode-win32-x64/resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--install-extension", "LuqueDaniel.languague-renpy",
+        "--install-extension", "renpy.language-renpy",
         environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
 
 elif renpy.macintosh:
@@ -82,7 +82,7 @@ elif renpy.macintosh:
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
     run("vscode/Visual Studio Code.app/Contents/MacOS/Electron", "vscode/Visual Studio Code.app/Contents/Resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--install-extension", "LuqueDaniel.languague-renpy",
+        "--install-extension", "renpy.language-renpy",
         environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
 
 else:
