@@ -1,5 +1,64 @@
 import renpy
-from installer import _, download, remove, exists, move, processing, run, mkdir, unpack, error, info
+from installer import _, remove, exists, move, processing, run, mkdir, unpack, error, info
+
+def download(url, filename, hash=None):
+    """
+    Downloads `url` to `filename`, a tempfile.
+    """
+
+    import installer
+    import requests
+    import time
+    import renpy
+    from renpy.store import interface, _
+
+    download_url = url
+    download_file = installer._friendly(filename)
+
+    filename = installer._path(filename)
+
+    if hash is not None:
+        if installer._check_hash(filename, hash):
+            return
+
+    progress_time = time.time()
+
+    try:
+
+        response = requests.get(url, stream=True, proxies=renpy.exports.proxies, timeout=15, headers={"Referer" : "https://code.visualstudio.com/download", "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36 renpy/8'})
+        response.raise_for_status()
+
+        total_size = int(response.headers.get('content-length', 1))
+
+        downloaded = 0
+
+        with open(filename, "wb") as f:
+
+            for i in response.iter_content(65536):
+
+                f.write(i)
+                downloaded += len(i)
+
+                if time.time() - progress_time > 0.1:
+                    progress_time = time.time()
+                    if not installer.quiet:
+                        interface.processing(
+                            _("Downloading [installer.download_file]..."),
+                            complete=downloaded, total=total_size)
+
+    except requests.HTTPError as e:
+        if not installer.quiet:
+            raise
+
+        interface.error(_("Could not download [installer.download_file] from [installer.download_url]:\n{b}[installer.download_error]"))
+
+    if hash is not None:
+        if not installer.quiet:
+            raise Exception("Hash check failed.")
+        if not installer._check_hash(filename, hash):
+            interface.error(_("The downloaded file [installer.download_file] from [installer.download_url] is not correct."))
+
+
 
 info(_("Visual Studio Code is licensed under {a=https://code.visualstudio.com/license}Microsoft Software License Terms{/a}, and may collect some information about you and your use.\n\nBy installing Visual Studio Code, you agree to thse terms."))
 
