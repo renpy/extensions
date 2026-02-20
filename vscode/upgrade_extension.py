@@ -14,37 +14,31 @@ if renpy.linux:
 
     # Upgrade the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/VSCode-linux-{}/code".format(arch), "vscode/VSCode-linux-{}/resources/app/out/cli.js".format(arch), "--ms-enable-electron-run-as-node",
-        "--uninstall-extension", "LuqueDaniel.languague-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/VSCode-linux-{}/bin/code".format(arch), "--uninstall-extension", "LuqueDaniel.languague-renpy",
+        environ={ "VSCODE_DEV" : "", })
 
-    run("vscode/VSCode-linux-{}/code".format(arch), "vscode/VSCode-linux-{}/resources/app/out/cli.js".format(arch), "--ms-enable-electron-run-as-node",
-        "--install-extension", "renpy.language-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/VSCode-linux-{}/bin/code".format(arch), "--install-extension", "renpy.language-renpy",
+        environ={ "VSCODE_DEV" : "", })
 
 elif renpy.windows:
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/VSCode-win32-x64/Code.exe", "vscode/VSCode-win32-x64/resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--uninstall-extension", "LuqueDaniel.languague-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode\\VSCode-win32-x64\\bin\\code.cmd", "--uninstall-extension", "LuqueDaniel.languague-renpy",
+        environ={ "VSCODE_DEV" : "" })
 
-    run("vscode/VSCode-win32-x64/Code.exe", "vscode/VSCode-win32-x64/resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--install-extension", "renpy.language-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode\\VSCode-win32-x64\\bin\\code.cmd", "--install-extension", "renpy.language-renpy",
+        environ={ "VSCODE_DEV" : "",  })
 
 elif renpy.macintosh:
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/Visual Studio Code.app/Contents/MacOS/Electron", "vscode/Visual Studio Code.app/Contents/Resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--uninstall-extension", "LuqueDaniel.languague-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/Visual Studio Code.app/Resources/app/bin/code", "--uninstall-extension", "LuqueDaniel.languague-renpy",
+        environ={ "VSCODE_DEV" : "",  })
 
-    run("vscode/Visual Studio Code.app/Contents/MacOS/Electron", "vscode/Visual Studio Code.app/Contents/Resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--install-extension", "renpy.language-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/Visual Studio Code.app/Resources/app/bin/code", "--install-extension", "renpy.language-renpy",
+        environ={ "VSCODE_DEV" : "",  })
 
 else:
     error(_("Visual Studio Code is not supported on your platform."))

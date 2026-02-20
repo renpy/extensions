@@ -121,7 +121,7 @@ elif renpy.windows:
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/VSCode-win32-x64/bin/code.cmd", "--install-extension", "renpy.language-renpy", environ={ "VSCODE_DEV" : "", })
+    run("vscode\\VSCode-win32-x64\\bin\\code.cmd", "--install-extension", "renpy.language-renpy", environ={ "VSCODE_DEV" : "", })
 
 elif renpy.macintosh:
 
