@@ -74,7 +74,7 @@ if renpy.linux:
         arch = "x64"
 
     # Download vscode.
-    download("https://code.visualstudio.com/sha/download?build=stable&os=linux-{}".format(arch), "temp:vscode-linux-{}.tar.gz".format(arch))
+    download("https://update.code.visualstudio.com/latest/linux-{}/stable".format(arch), "temp:vscode-linux-{}.tar.gz".format(arch))
 
     # Back up the data directory.
     remove("temp:vscode-data")
@@ -94,14 +94,13 @@ if renpy.linux:
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/VSCode-linux-{}/code".format(arch), "vscode/VSCode-linux-{}/resources/app/out/cli.js".format(arch), "--ms-enable-electron-run-as-node",
-        "--install-extension", "renpy.language-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/VSCode-linux-{}/bin/code".format(arch), "--install-extension", "renpy.language-renpy",
+        environ={ "VSCODE_DEV" : "", })
 
 elif renpy.windows:
 
     # Download vscode.
-    download("https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-archive", "temp:vscode-win32-x64.tar.gz")
+    download("https://update.code.visualstudio.com/latest/win32-x64-archive/stable", "temp:vscode-win32-x64.tar.gz")
 
     # Back up the data directory.
     remove("temp:vscode-data")
@@ -122,13 +121,11 @@ elif renpy.windows:
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/VSCode-win32-x64/Code.exe", "vscode/VSCode-win32-x64/resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--install-extension", "renpy.language-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/VSCode-win32-x64/bin/code.cmd", "--install-extension", "renpy.language-renpy", environ={ "VSCODE_DEV" : "", })
 
 elif renpy.macintosh:
 
-    download("https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal", "temp:vscode-darwin-universal.zip")
+    download("https://update.code.visualstudio.com/latest/darwin-universal/stable", "temp:vscode-darwin-universal.zip")
 
     # Unpack vscode.
     mkdir("vscode")
@@ -140,9 +137,8 @@ elif renpy.macintosh:
 
     # Install the Ren'Py extension.
     processing(_("Installing the Ren'Py extension."))
-    run("vscode/Visual Studio Code.app/Contents/MacOS/Electron", "vscode/Visual Studio Code.app/Contents/Resources/app/out/cli.js", "--ms-enable-electron-run-as-node",
-        "--install-extension", "renpy.language-renpy",
-        environ={ "VSCODE_DEV" : "", "ELECTRON_RUN_AS_NODE" : "1" })
+    run("vscode/Visual Studio Code.app/Contents/Resources/app/bin/code", "--install-extension", "renpy.language-renpy",
+        environ={ "VSCODE_DEV" : "", })
 
 else:
     error(_("Visual Studio Code is not supported on your platform."))
